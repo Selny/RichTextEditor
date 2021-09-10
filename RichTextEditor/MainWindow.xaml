@@ -1,0 +1,103 @@
+﻿<Window x:Class="RichTextEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RichTextEditor"
+        mc:Ignorable="d"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        
+        Title="Rich Text Editor" Height="400" Width="640">
+
+    <Grid>
+        <!--Borders-->
+        <Border CornerRadius="18">
+            <Separator Margin="0,-300,0,0">
+                <Separator.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                <RotateTransform Angle="90" CenterX="0.5" CenterY="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FF2DA5FF"/>
+                        <GradientStop Color="#FF376FFF" Offset="1"/>
+                    </LinearGradientBrush>
+                </Separator.Background>
+            </Separator>
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="90" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF009BF5"/>
+                    <GradientStop Color="#FF003AF6" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Border Margin="0, 100, 0, 0" CornerRadius="0, 0, 18, 18">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="90" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="White"/>
+                    <GradientStop Color="#FFC8D7FF" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Border BorderThickness="1" Background="Transparent" Width="600" Height="250" Margin="0, 0, 0, -100" HorizontalAlignment="Center" BorderBrush="#FFB4C8E1"/>
+        <Ellipse Fill="#FFFF3F3F" Width="12" Height="12" Margin="500, 0, 0, 360"/>
+        <Ellipse Fill="#FF1BFFB1" Width="12" Height="12" Margin="550, 0, 0, 360"/>
+        <Ellipse Fill="#FFFFE01B" Width="12" Height="12" Margin="600, 0, 0, 360"/>
+        <Button Click="Close_Button_Click"  Content="r" Background="Transparent" Foreground="#FFA31212" Width="8" Height="8" BorderThickness="0" Margin="500, 0, 0, 360" FontFamily="Webdings" FontSize="6"/>
+        <Button Click="Minimize_Button_Click" Content="0" Background="Transparent" Foreground="#FF0C865C" Width="8" Height="8" BorderThickness="0" Margin="550, 0, 0, 360" FontFamily="Webdings" FontSize="6"/>
+        <Button Name="ToggleState" Content="1" Background="Transparent" Foreground="#FF8D7C0F" Width="8" Height="8" BorderThickness="0" Margin="600, 0, 0, 360" FontFamily="Webdings" FontSize="6"/>
+
+        <Label Content="Rich Text Editor" Foreground="White" HorizontalAlignment="Center" FontFamily="Segoe UI Semilight" FontSize="18" FontWeight="Bold"/>
+        <Label Content="File        Home        Insert        Format        View        Help" Foreground="#FF4C85FF" HorizontalAlignment="Left" Margin="26" FontFamily="Corbel" FontSize="13"  FontWeight="Bold"/>
+
+        <Button Background="Transparent" Foreground="White" Content="B" HorizontalAlignment="Left" Height="25" BorderThickness="0" FontSize="20" Margin="25, 0, 0, 250" FontFamily="Segoe UI" FontWeight="Bold"/>
+        <Button Background="Transparent" Foreground="White" Content="I" HorizontalAlignment="Left" Height="25" BorderThickness="0" FontSize="20" Margin="55, 0, 0, 250" FontStyle="Italic" />
+        <Button Background="Transparent" Foreground="White" HorizontalAlignment="Left" Height="25" BorderThickness="0" FontSize="20" Margin="75, 0, 0, 250">
+            <TextBlock Text="U" TextDecorations="Underline" FontFamily="Segoe UI Semibold"/>
+        </Button>
+        <Button Background="Transparent" Foreground="White" HorizontalAlignment="Left" Height="25" BorderThickness="0" FontSize="20" Margin="110, 0, 0, 250">
+            <TextBlock Text="S" TextDecorations="Strikethrough" FontFamily="Segoe UI Semibold"/>
+        </Button>
+
+        <TextBox Name="txt" HorizontalAlignment="Center" Width="600" Height="250" Margin="0, 0, 0, -100" Background="Transparent"></TextBox>
+        <ComboBox Name="Fonts" Foreground="DarkBlue" Background="Transparent" ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}" HorizontalAlignment="Left" Height="20" Width="100" Margin="150, 0, 0, 245" SelectedIndex="47" SelectionChanged="changed"></ComboBox>
+        <ComboBox Name="Size" SelectionChanged="changed" Foreground="DarkBlue" Background="Transparent" HorizontalAlignment="Left" Height="20" Width="50" Margin="275, 0, 0, 245">
+            <ComboBoxItem>6</ComboBoxItem>
+            <ComboBoxItem>7</ComboBoxItem>
+            <ComboBoxItem>8</ComboBoxItem>
+            <ComboBoxItem>9</ComboBoxItem>
+            <ComboBoxItem>10</ComboBoxItem>
+            <ComboBoxItem IsSelected="True">11</ComboBoxItem>
+            <ComboBoxItem>12</ComboBoxItem>
+            <ComboBoxItem>13</ComboBoxItem>
+            <ComboBoxItem>14</ComboBoxItem>
+        </ComboBox>
+
+        <ComboBox SelectionChanged="changed" Name="Colors" Foreground="DarkBlue" Background="Transparent" HorizontalAlignment="Left" Height="20" Width="100" Margin="350, 0, 0, 245">
+            <ComboBoxItem>Red</ComboBoxItem>
+            <ComboBoxItem>Blue</ComboBoxItem>
+            <ComboBoxItem>Green</ComboBoxItem>
+            <ComboBoxItem IsSelected="True">Black</ComboBoxItem>
+        </ComboBox>
+    </Grid>
+</Window>
